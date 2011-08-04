@@ -28,17 +28,12 @@
 		function embed_replace($text) {
 
 			$types = array(
-					'youtube'=>array('/(?<!["\'])http:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9\-_]+)/','<iframe width="425" height="349" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>')
+					'youtube'=>array('http:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9\-_]+)','<iframe width="425" height="349" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>')
 				);
 			
 			foreach($types as $t => $r) {
-				preg_match_all($r[0], $text, $urls);
-				
-				if(count($urls) > 0) {
-					foreach($urls as $url) {
-						$text = preg_replace($r[0],$r[1],$text);
-					}
-				}
+				$text = preg_replace('/<a[^>]+>'.$r[0].'<\/a>/i',$r[1],$text);
+				$text = preg_replace('/(?<![\'"])'.$r[0].'/i',$r[1],$text);
 			}
 			return $text;
 		}
