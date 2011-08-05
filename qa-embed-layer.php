@@ -8,18 +8,18 @@
 		{
 			if (!empty($q_view['content'])){
 				$q_view = $this->embed_replace($q_view['content']);
-				qa_html_theme_base::q_view_content($q_view)
+				qa_html_theme_base::q_view_content($q_view);
 			}
 		}
 		function a_item_content($a_item)
 		{
 			$a_item = $this->embed_replace($a_item['content']);
-			qa_html_theme_base::a_item_content($a_item)
+			qa_html_theme_base::a_item_content($a_item);
 		}
 		function c_item_content($c_item)
 		{
 			$c_item = $this->embed_replace($a_item['content']);
-			qa_html_theme_base::c_item_content($c_item)
+			qa_html_theme_base::c_item_content($c_item);
 
 		}	
 		
