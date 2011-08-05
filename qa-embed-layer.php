@@ -18,7 +18,7 @@
 		}
 		function c_item_content($c_item)
 		{
-			$c_item['content'] = $this->embed_replace($a_item['content']);
+			$c_item['content'] = $this->embed_replace($c_item['content']);
 			qa_html_theme_base::c_item_content($c_item);
 
 		}	
