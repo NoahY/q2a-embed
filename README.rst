@@ -4,13 +4,14 @@ Question2Answer Embed
 -----------
 Description
 -----------
-This is a plugin for **Question2Answer** that provides video embedding functionality. 
+This is a plugin for **Question2Answer** that provides video embedding functionality.
 
 --------
 Features
 --------
 - currently supports only YouTube, but extensible
-- admin switch on and off
+- switch on and off via admin/plugins
+- set width and height via admin/plugins
 
 ------------
 Installation
@@ -18,7 +19,7 @@ Installation
 1. Install Question2Answer_
 2. Create a new folder in the qa-plugin directory (e.g. embed)
 3. Place the files in this repository in that folder.
-4. navigate to your site 
+4. navigate to your site
 5. Go to **Admin -> Plugins** on your q2a install and select the '**Enable Video Embedding**' option, then '**Save**'.
 
 .. _Question2Answer: http://www.question2answer.org/install.php
@@ -39,3 +40,4 @@ About q2A
 Question2Answer is a free and open source platform for Q&A sites. For more information, visit:
 
 http://www.question2answer.org/
+
