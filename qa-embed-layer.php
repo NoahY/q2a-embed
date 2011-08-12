@@ -26,7 +26,8 @@
 			function embed_replace($text) {
 
 					$types = array(
-							'youtube'=>array('http:\/\/www\.youtube\.com\/watch\?\S*v=([A-Za-z0-9_-]+)\S*','<iframe width="'.qa_opt('embed_video_width').'" height="'.qa_opt('embed_video_height').'" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>')
+							'youtube'=>array('http:\/\/www\.youtube\.com\/watch\?\S*v=([A-Za-z0-9_-]+)[^< ]*','<iframe width="'.qa_opt('embed_video_width').'" height="'.qa_opt('embed_video_height').'" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>')
+							'vimeo'=>array('http:\/\/www\.vimeo\.com\/([0-9]+)[^< ]*','<iframe src="http://player.vimeo.com/video/22775189?title=0&amp;byline=0&amp;portrait=0" width="'.qa_opt('embed_video_width').'" height="'.qa_opt('embed_video_height').'" frameborder="0"></iframe>')
 					);
 
 					foreach($types as $t => $r) {
