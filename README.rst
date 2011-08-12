@@ -9,7 +9,11 @@ This is a plugin for **Question2Answer** that provides video embedding functiona
 --------
 Features
 --------
-- currently supports only YouTube, but extensible
+- currently supports the following sites:
+  - YouTube
+  - Vimeo
+  - Metacafe
+  - Dailymotion
 - switch on and off via admin/plugins
 - set width and height via admin/plugins
 
