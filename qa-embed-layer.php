@@ -42,5 +42,3 @@
 					return $text;
 			}
 	}
-http://www.metacafe.com/watch/6906261/coin_symbolizes_strength_and_power/
-<embed flashVars="playerVars=showStats=no|autoPlay=no" src="http://www.metacafe.com/fplayer/5941379/metaminute_marvel_vs_capcom_3.swf" width="440" height="272" wmode="transparent" allowFullScreen="true" allowScriptAccess="always" name="Metacafe_5941379" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"></embed>
