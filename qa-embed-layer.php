@@ -24,10 +24,15 @@
 			}
 
 			function embed_replace($text) {
-
+					
+					$w  = qa_opt('embed_video_width');
+					
+					$h = qa_opt('embed_video_height');
+					
 					$types = array(
-							'youtube'=>array('http:\/\/www\.youtube\.com\/watch\?\S*v=([A-Za-z0-9_-]+)[^< ]*','<iframe width="'.qa_opt('embed_video_width').'" height="'.qa_opt('embed_video_height').'" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'),
-							'vimeo'=>array('http:\/\/www\.vimeo\.com\/([0-9]+)[^< ]*','<iframe src="http://player.vimeo.com/video/22775189?title=0&amp;byline=0&amp;portrait=0" width="'.qa_opt('embed_video_width').'" height="'.qa_opt('embed_video_height').'" frameborder="0"></iframe>'),
+							'youtube'=>array('http:\/\/www\.youtube\.com\/watch\?\S*v=([A-Za-z0-9_-]+)[^< ]*','<iframe width="'.$w.'" height="'.$h.'" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'),
+							'vimeo'=>array('http:\/\/www\.vimeo\.com\/([0-9]+)[^< ]*','<iframe src="http://player.vimeo.com/video/22775189?title=0&amp;byline=0&amp;portrait=0" width="'.$w.'" height="'.$h.'" frameborder="0"></iframe>'),
+							'metacafe'=>array('http:\/\/www\.metacafe\.com\/([0-9]+)/([A-Za-z0-9_-]+)[^< ]*','<embed flashVars="playerVars=showStats=no|autoPlay=no" src="http://www.metacafe.com/fplayer/$1$2.swf" width="'.$w.'" height="'.$h.'" wmode="transparent" allowFullScreen="true" allowScriptAccess="always" name="Metacafe_$1" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"></embed>'),
 					);
 
 					foreach($types as $t => $r) {
@@ -37,4 +42,5 @@
 					return $text;
 			}
 	}
-
+http://www.metacafe.com/watch/6906261/coin_symbolizes_strength_and_power/
+<embed flashVars="playerVars=showStats=no|autoPlay=no" src="http://www.metacafe.com/fplayer/5941379/metaminute_marvel_vs_capcom_3.swf" width="440" height="272" wmode="transparent" allowFullScreen="true" allowScriptAccess="always" name="Metacafe_5941379" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"></embed>
