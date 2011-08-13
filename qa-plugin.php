@@ -18,14 +18,9 @@
                         exit;   
         }               
 
-	if(!qa_opt('embed_video_width')) qa_opt('embed_video_width','425');
-	if(!qa_opt('embed_video_height')) qa_opt('embed_video_height','349');
-                        
         qa_register_plugin_module('module', 'qa-embed-admin.php', 'qa_embed_admin', 'Embed Admin');
-                
-        if (qa_opt('embed_enable')) {
-                qa_register_plugin_layer('qa-embed-layer.php', 'Embed Replacement Layer');
-        }               
+        
+        qa_register_plugin_layer('qa-embed-layer.php', 'Embed Replacement Layer');
                         
                         
 /*                              
