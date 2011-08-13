@@ -5,7 +5,7 @@
 		
 		switch($option) {
 			case 'embed_video_width':
-				return 425';
+				return 425;
 			case 'embed_video_height':
 				return 349;
 		}
