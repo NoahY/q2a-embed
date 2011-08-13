@@ -2,6 +2,17 @@
 
 	class qa_html_theme_layer extends qa_html_theme_base {
 
+		function option_default($option) {
+			
+			switch($option) {
+				case 'embed_video_width':
+					return 425');
+				case 'embed_video_height':
+					return 349;
+			}
+			
+		}
+
 	// theme replacement functions
 
 			function q_view_content($q_view)

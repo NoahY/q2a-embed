@@ -1,5 +1,16 @@
 <?php
     class qa_embed_admin {
+
+	function option_default($option) {
+		
+		switch($option) {
+			case 'embed_video_width':
+				return 425');
+			case 'embed_video_height':
+				return 349;
+		}
+		
+	}
         
         function allow_template($template)
         {
