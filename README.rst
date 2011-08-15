@@ -25,7 +25,7 @@ Installation
 #. Get the source code for this plugin from github_, either using git_, or downloading directly:
 
    - To download using git, install git and then type 
-     ``git clone git://github.com/NoahY/q2a-embed.git comment-ajax``
+     ``git clone git://github.com/NoahY/q2a-embed.git embed``
      at the command prompt (on Linux, Windows is a bit different)
    - To download directly, go to the `project page`_ and click **Download**
 
