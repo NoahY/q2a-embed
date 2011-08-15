@@ -56,7 +56,7 @@
 
 					foreach($types as $t => $r) {
 							$text = preg_replace('/<a[^>]+>'.$r[0].'<\/a>/i',$r[1],$text);
-							$text = preg_replace('/(?<![\'"])'.$r[0].'/i',$r[1],$text);
+							$text = preg_replace('/(?<![\'"=])'.$r[0].'/i',$r[1],$text);
 					}
 					return $text;
 			}
