@@ -14,6 +14,7 @@ Features
   - Vimeo
   - Metacafe
   - Dailymotion
+- also supports basic image embedding from urls (won't work for complex urls)
 - switch on and off via admin/plugins
 - set width and height via admin/plugins
 
