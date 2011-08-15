@@ -9,6 +9,8 @@
 					return 425;
 				case 'embed_video_height':
 					return 349;
+				default:
+					return false;
 			}
 			
 		}
