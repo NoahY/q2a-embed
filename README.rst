@@ -4,7 +4,7 @@ Question2Answer Embed 1.0b1
 -----------
 Description
 -----------
-This is a plugin for **Question2Answer** that provides video embedding functionality.
+This is a plugin for **Question2Answer** that provides media embedding functionality.
 
 --------
 Features
@@ -14,7 +14,7 @@ Features
   - Vimeo
   - Metacafe
   - Dailymotion
-- also supports basic image embedding from urls (won't work for complex urls)
+- also supports basic image and mp3 embedding from urls
 - switch on and off via admin/plugins
 - set width and height via admin/plugins
 
