@@ -30,6 +30,8 @@
                 qa_opt('embed_video_width',qa_post_text('embed_video_width'));
                 qa_opt('embed_video_height',qa_post_text('embed_video_height'));
                 qa_opt('embed_enable',(bool)qa_post_text('embed_enable'));
+                qa_opt('embed_enable_mp3',(bool)qa_post_text('embed_enable_mp3'));
+                qa_opt('embed_enable_img',(bool)qa_post_text('embed_enable_img'));
                 $ok = 'Settings Saved.';
             }
   
@@ -47,6 +49,20 @@
                 'label' => 'Enable video embedding',
                 'tags' => 'NAME="embed_enable"',
                 'value' => qa_opt('embed_enable'),
+                'type' => 'checkbox',
+            );
+            
+            $fields[] = array(
+                'label' => 'Enable image embedding',
+                'tags' => 'NAME="embed_enable_img"',
+                'value' => qa_opt('embed_enable_img'),
+                'type' => 'checkbox',
+            );
+            
+            $fields[] = array(
+                'label' => 'Enable mp3 embedding',
+                'tags' => 'NAME="embed_enable_mp3"',
+                'value' => qa_opt('embed_enable_mp3'),
                 'type' => 'checkbox',
             );
 	    $fields[] = array(

@@ -1,10 +1,10 @@
 <?php
         
 /*              
-        Plugin Name: Embed YouTube
+        Plugin Name: Embed
         Plugin URI: https://github.com/NoahY/q2a-embed
-        Plugin Description: Embed YouTube links
-        Plugin Version: 0.2
+        Plugin Description: Embed Video, Images and MP3 files
+        Plugin Version: 1.0b2
         Plugin Date: 2011-07-30
         Plugin Author: NoahY
         Plugin Author URI:                              
