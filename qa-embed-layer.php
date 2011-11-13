@@ -4,6 +4,14 @@
 
 	// theme replacement functions
 
+		function head_custom()
+		{
+			qa_html_theme_base::head_custom();
+			if(qa_opt('embed_enable_thickbox')) { 
+				$this->output('<script type="text/javascript" src="'.QA_HTML_THEME_LAYER_URLTOROOT.'thickbox.js"></script>');
+				$this->output('<link rel="stylesheet" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'thickbox.css" type="text/css" media="screen" />');
+			}
+		}
 		function q_view_content($q_view)
 		{
 			if (isset($q_view['content'])){
@@ -32,12 +40,16 @@
 			
 			$h = qa_opt('embed_video_height');
 			
+			$w2  = qa_opt('embed_image_width');
+			
+			$h2 = qa_opt('embed_image_height');
+			
 			$types = array(
 				'youtube'=>array('http:\/\/www\.youtube\.com\/watch\?\S*v=([A-Za-z0-9_-]+)[^< ]*','<iframe width="'.$w.'" height="'.$h.'" src="http://www.youtube.com/embed/$1?wmode=transparent" frameborder="0" allowfullscreen></iframe>'),
 				'vimeo'=>array('http:\/\/www\.vimeo\.com\/([0-9]+)[^< ]*','<iframe src="http://player.vimeo.com/video/22775189?title=0&amp;byline=0&amp;portrait=0&wmode=transparent" width="'.$w.'" height="'.$h.'" frameborder="0"></iframe>'),
 				'metacafe'=>array('http:\/\/www\.metacafe\.com\/watch\/([0-9]+)\/([a-z0-9_]+)[^< ]*','<embed flashVars="playerVars=showStats=no|autoPlay=no" src="http://www.metacafe.com/fplayer/$1/$2.swf" width="'.$w.'" height="'.$h.'" wmode="transparent" allowFullScreen="true" allowScriptAccess="always" name="Metacafe_$1" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"></embed>'),
 				'dailymotion'=>array('http:\/\/www\.dailymotion\.com\/video\/([A-Za-z0-9]+)[^< ]*','<iframe frameborder="0" width="'.$w.'" height="'.$h.'" src="http://www.dailymotion.com/embed/video/$1?wmode=transparent"></iframe>'),
-				'image'=>array('(https*:\/\/[-\%_\/.a-zA-Z0-9]+\.(png|jpg|jpeg|gif|bmp))[^< ]*','<img src="$1" style="max-width:'.$w.'px;max-height:'.$h.'px" />','img'),
+				'image'=>array('(https*:\/\/[-\%_\/.a-zA-Z0-9]+\.(png|jpg|jpeg|gif|bmp))[^< ]*','<img src="$1" style="max-width:'.$w2.'px;max-height:'.$h2.'px" />','img'),
 				'mp3'=>array('(https*:\/\/[-\%_\/.a-zA-Z0-9]+\.mp3)[^< ]*','<embed type="application/x-shockwave-flash" flashvars="audioUrl=$1" src="http://www.google.com/reader/ui/3523697345-audio-player.swf" width="400" height="27" quality="best"></embed>','mp3'),
 			);
 
@@ -45,6 +57,52 @@
 				
 				if( (!isset($r[2]) && !qa_opt('embed_enable')) || (isset($r[2]) && !qa_opt('embed_enable_'.$r[2])) ) continue;
 				
+				if($r[2] == 'img' && qa_opt('embed_enable_thickbox') && preg_match('/MSIE [5-7]/',$_SERVER['HTTP_USER_AGENT']) == 0) {
+					preg_match_all('/'.$r[0].'/',$text,$imga);
+					if(!empty($imga)) {
+						foreach($imga[1] as $img) {
+							require_once QA_INCLUDE_DIR.'qa-util-image.php';
+							$imagedata = file_get_contents($img);
+							$inimage=@imagecreatefromstring($imagedata);
+							
+							if (is_resource($inimage)) {
+								$width=imagesx($inimage);
+								$height=imagesy($inimage);
+								
+								if (qa_image_constrain($w2, $h2, qa_opt('embed_thickbox_thumb')))
+									qa_gd_image_resize($inimage, $w2, $h2);
+							}
+							if (is_resource($inimage)) {
+								preg_match('/\.(png|jpg|jpeg|gif|bmp)$/',$img,$ext);
+								ob_start();
+								switch(strtolower($ext[1])) {
+									case 'jpg':
+									case 'jpeg':
+									case 'bmp':
+										imagejpeg($inimage, null, 90);
+										break;
+									case 'png':
+										imagealphablending($inimage, false);
+										imagesavealpha($inimage, true);
+										imagepng($inimage);
+										break;
+									case 'gif':
+										imagealphablending($inimage, false);
+										imagesavealpha($inimage, true);
+										imagegif($inimage);
+										break;
+								}
+								$imagedata=ob_get_clean();
+								imagedestroy($inimage);
+							}							
+							
+							$replace = '<a href="'.$img.'" class="thickbox"><img  src="data:image/'.$ext[1].';base64,'.base64_encode($imagedata).'">';
+							$text = preg_replace('|<a[^>]+>'.$img.'</a>|i',$replace,$text);
+							$text = preg_replace('|(?<![\'"=])'.$img.'|i',$replace,$text);
+						}
+					}
+					continue;
+				}
 				$text = preg_replace('/<a[^>]+>'.$r[0].'<\/a>/i',$r[1],$text);
 				$text = preg_replace('/(?<![\'"=])'.$r[0].'/i',$r[1],$text);
 			}
