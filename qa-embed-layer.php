@@ -61,42 +61,7 @@
 					preg_match_all('/'.$r[0].'/',$text,$imga);
 					if(!empty($imga)) {
 						foreach($imga[1] as $img) {
-							require_once QA_INCLUDE_DIR.'qa-util-image.php';
-							$imagedata = file_get_contents($img);
-							$inimage=@imagecreatefromstring($imagedata);
-							
-							if (is_resource($inimage)) {
-								$width=imagesx($inimage);
-								$height=imagesy($inimage);
-								
-								if (qa_image_constrain($w2, $h2, qa_opt('embed_thickbox_thumb')))
-									qa_gd_image_resize($inimage, $w2, $h2);
-							}
-							if (is_resource($inimage)) {
-								preg_match('/\.(png|jpg|jpeg|gif|bmp)$/',$img,$ext);
-								ob_start();
-								switch(strtolower($ext[1])) {
-									case 'jpg':
-									case 'jpeg':
-									case 'bmp':
-										imagejpeg($inimage, null, 90);
-										break;
-									case 'png':
-										imagealphablending($inimage, false);
-										imagesavealpha($inimage, true);
-										imagepng($inimage);
-										break;
-									case 'gif':
-										imagealphablending($inimage, false);
-										imagesavealpha($inimage, true);
-										imagegif($inimage);
-										break;
-								}
-								$imagedata=ob_get_clean();
-								imagedestroy($inimage);
-							}							
-							
-							$replace = '<a href="'.$img.'" class="thickbox"><img  src="data:image/'.$ext[1].';base64,'.base64_encode($imagedata).'">';
+							$replace = '<a href="'.$img.'" class="thickbox"><img  src="'.$img.'" style="max-width:'.$w2.'px;max-height:'.$h2.'px" /></a>';
 							$text = preg_replace('|<a[^>]+>'.$img.'</a>|i',$replace,$text);
 							$text = preg_replace('|(?<![\'"=])'.$img.'|i',$replace,$text);
 						}
