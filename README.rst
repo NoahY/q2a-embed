@@ -15,8 +15,11 @@ Features
   - Metacafe
   - Dailymotion
 - also supports basic image and mp3 embedding from urls
+- option to add Thickbox_ effect for images
 - switch on and off via admin/plugins
 - set width and height via admin/plugins
+
+.. _Thickbox: http://jquery.com/demo/thickbox/
 
 ------------
 Installation
