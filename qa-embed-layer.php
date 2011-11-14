@@ -57,7 +57,7 @@
 				
 				if( (!isset($r[2]) && !qa_opt('embed_enable')) || (isset($r[2]) && !qa_opt('embed_enable_'.$r[2])) ) continue;
 				
-				if($r[2] == 'img' && qa_opt('embed_enable_thickbox') && preg_match('/MSIE [5-7]/',$_SERVER['HTTP_USER_AGENT']) == 0) {
+				if(@$r[2] == 'img' && qa_opt('embed_enable_thickbox') && preg_match('/MSIE [5-7]/',$_SERVER['HTTP_USER_AGENT']) == 0) {
 					preg_match_all('/'.$r[0].'/',$text,$imga);
 					if(!empty($imga)) {
 						foreach($imga[1] as $img) {

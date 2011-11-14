@@ -35,9 +35,9 @@
                 qa_opt('embed_video_width',qa_post_text('embed_video_width'));
                 qa_opt('embed_video_height',qa_post_text('embed_video_height'));
                 qa_opt('embed_enable_img',(bool)qa_post_text('embed_enable_img'));
-                qa_opt('embed_enable_thickbox',(bool)qa_post_text('embed_enable_thickbox'));
                 qa_opt('embed_image_width',qa_post_text('embed_image_width'));
                 qa_opt('embed_image_height',qa_post_text('embed_image_height'));
+                qa_opt('embed_enable_thickbox',(bool)qa_post_text('embed_enable_thickbox'));
                 qa_opt('embed_enable_mp3',(bool)qa_post_text('embed_enable_mp3'));
                 $ok = 'Settings Saved.';
             }
@@ -101,12 +101,6 @@
                 'value' => qa_opt('embed_enable_thickbox'),
                 'type' => 'checkbox',
             );
-	    $fields[] = array(
-		'label' => 'Thickbox thumb size (square)',
-		'type' => 'number',
-		'value' => qa_opt('embed_thickbox_thumb'),
-		'tags' => 'NAME="embed_thickbox_thumb"',
-	    ); 
 	               
             $fields[] = array(
                 'type' => 'blank',
