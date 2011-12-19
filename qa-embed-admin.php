@@ -39,7 +39,7 @@
                 qa_opt('embed_image_height',qa_post_text('embed_image_height'));
                 qa_opt('embed_enable_thickbox',(bool)qa_post_text('embed_enable_thickbox'));
                 qa_opt('embed_enable_mp3',(bool)qa_post_text('embed_enable_mp3'));
-                $ok = 'Settings Saved.';
+		$ok = qa_lang('admin/options_saved');
             }
   
 	    qa_set_display_rules($qa_content, array(
