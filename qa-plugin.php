@@ -5,7 +5,7 @@
         Plugin URI: https://github.com/NoahY/q2a-embed
         Plugin Update Check URI: https://github.com/NoahY/q2a-embed/raw/master/qa-plugin.php
         Plugin Description: Embed Video, Images and MP3 files
-        Plugin Version: 1.2
+        Plugin Version: 1.3
         Plugin Date: 2011-07-30
         Plugin Author: NoahY
         Plugin Author URI:                              
