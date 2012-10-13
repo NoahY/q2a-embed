@@ -74,7 +74,7 @@
 				),
 				'image'=>array(
 					array(
-						'(https*:\/\/[-\%_\/.a-zA-Z0-9]+\.(png|jpg|jpeg|gif|bmp))[^< ]*',
+						'(https*:\/\/[-\%_\/.a-zA-Z0-9+]+\.(png|jpg|jpeg|gif|bmp))[^< ]*',
 						'<img src="$1" style="max-width:'.$w2.'px;max-height:'.$h2.'px" />','img'
 					)
 				),
