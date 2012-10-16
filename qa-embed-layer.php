@@ -58,7 +58,7 @@
 				'vimeo'=>array(
 					array(
 						'https{0,1}:\/\/w{0,3}\.*vimeo\.com\/([0-9]+)[^< ]*',
-						'<iframe src="http://player.vimeo.com/video/22775189?title=0&amp;byline=0&amp;portrait=0&wmode=transparent" width="'.$w.'" height="'.$h.'" frameborder="0"></iframe>')
+						'<iframe src="http://player.vimeo.com/video/$1?title=0&amp;byline=0&amp;portrait=0&wmode=transparent" width="'.$w.'" height="'.$h.'" frameborder="0"></iframe>')
 				),
 				'metacafe'=>array(
 					array(
