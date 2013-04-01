@@ -40,7 +40,7 @@
 			
 			$h = qa_opt('embed_video_height');
 			
-			$w2  = qa_opt('embed_image_width');
+			$w2 = qa_opt('embed_image_width');
 			
 			$h2 = qa_opt('embed_image_height');
 			
@@ -58,7 +58,7 @@
 				'vimeo'=>array(
 					array(
 						'https{0,1}:\/\/w{0,3}\.*vimeo\.com\/([0-9]+)[^< ]*',
-						'<iframe src="http://player.vimeo.com/video/$1?title=0&amp;byline=0&amp;portrait=0&wmode=transparent" width="'.$w.'" height="'.$h.'" frameborder="0"></iframe>')
+						'<iframe src="http://player.vimeo.com/video/$1?title=0&amp;byline=0&amp;portrait=0&amp;wmode=transparent" width="'.$w.'" height="'.$h.'" frameborder="0"></iframe>')
 				),
 				'metacafe'=>array(
 					array(
@@ -82,6 +82,12 @@
 					array(
 						'(https*:\/\/[-\%_\/.a-zA-Z0-9]+\.mp3)[^< ]*',
 						'<embed type="application/x-shockwave-flash" flashvars="audioUrl=$1" src="http://www.google.com/reader/ui/3523697345-audio-player.swf" width="400" height="27" quality="best"></embed>','mp3'
+					)
+				),
+				'gmap'=>array(
+					array(
+						'(https*:\/\/maps.google.com\/?[^< ]+)',
+						'<iframe width="'.qa_opt('embed_gmap_width').'" height="'.qa_opt('embed_gmap_height').'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="$1&amp;ie=UTF8&amp;output=embed"></iframe><br /><small><a href="$1&amp;ie=UTF8&amp;output=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>','gmap'
 					)
 				),
 			);
