@@ -14,6 +14,8 @@
 		    return 349;
 		case 'embed_thickbox_thumb':
 		    return 64;
+		case 'embed_mp3_player_code':
+		    return '<object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_mini.swf" width="200" height="20"><param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_mini.swf" /><param name="bgcolor" value="#000000" /><param name="FlashVars" value="mp3=$1" /></object>';
 		default:
 		    return null;				
 	    }
@@ -42,9 +44,16 @@
 			qa_opt('embed_enable_thickbox',(bool)qa_post_text('embed_enable_thickbox'));
 			qa_opt('embed_enable_mp3',(bool)qa_post_text('embed_enable_mp3'));
 			qa_opt('embed_enable_gmap',(bool)qa_post_text('embed_enable_gmap'));
+			qa_opt('embed_mp3_player_code', qa_post_text('embed_mp3_player_code'));
 			$ok = qa_lang('admin/options_saved');
 		}
-  
+  	    else if (qa_clicked('embed_reset')) {
+			foreach($_POST as $i => $v) {
+				$def = $this->option_default($i);
+				if($def !== null) qa_opt($i,$def);
+			}
+			$ok = qa_lang('admin/options_reset');
+	    }
 	    qa_set_display_rules($qa_content, array(
 		    'embed_video_height' => 'embed_enable',
 		    'embed_video_width' => 'embed_enable',
@@ -115,6 +124,14 @@
 			'value' => qa_opt('embed_enable_mp3'),
 			'type' => 'checkbox',
 		);
+		
+		$fields[] = array(
+			'label' => 'mp3 flash player code',
+			'tags' => 'NAME="embed_mp3_player_code"',
+			'value' => qa_opt('embed_mp3_player_code'),
+			'type' => 'textarea',
+			'rows' => '5',
+		);
 
 		$fields[] = array(
 			'type' => 'blank',
@@ -148,8 +165,12 @@
 		 
 			'buttons' => array(
 				array(
-					'label' => 'Save',
+					'label' => qa_lang_html('main/save_button'),
 					'tags' => 'NAME="embed_save"',
+				),
+				array(
+					'label' => qa_lang_html('admin/reset_options_button'),
+					'tags' => 'NAME="embed_reset"',
 				)
 			),
 		);

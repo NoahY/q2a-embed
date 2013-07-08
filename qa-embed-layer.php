@@ -80,8 +80,7 @@
 				),
 				'mp3'=>array(
 					array(
-						'(https*:\/\/[-\%_\/.a-zA-Z0-9]+\.mp3)[^< ]*',
-						'<embed type="application/x-shockwave-flash" flashvars="audioUrl=$1" src="http://www.google.com/reader/ui/3523697345-audio-player.swf" width="400" height="27" quality="best"></embed>','mp3'
+						'(https*:\/\/[-\%_\/.a-zA-Z0-9]+\.mp3)[^< ]*',qa_opt('embed_mp3_player_code'),'mp3'
 					)
 				),
 				'gmap'=>array(
