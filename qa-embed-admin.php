@@ -16,6 +16,8 @@
 		    return 64;
 		case 'embed_mp3_player_code':
 		    return '<object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_mini.swf" width="200" height="20"><param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_mini.swf" /><param name="bgcolor" value="#000000" /><param name="FlashVars" value="mp3=$1" /></object>';
+		case 'embed_pdf_from_blob':
+		    return 1;
 		default:
 		    return null;				
 	    }
@@ -45,6 +47,7 @@
 			qa_opt('embed_enable_mp3',(bool)qa_post_text('embed_enable_mp3'));
 			qa_opt('embed_enable_gmap',(bool)qa_post_text('embed_enable_gmap'));
 			qa_opt('embed_mp3_player_code', qa_post_text('embed_mp3_player_code'));
+			qa_opt('embed_pdf_from_blob', (bool)qa_post_text('embed_pdf_from_blob'));
 			$ok = qa_lang('admin/options_saved');
 		}
   	    else if (qa_clicked('embed_reset')) {
@@ -61,7 +64,6 @@
                     
         // Create the form for display
 
-            
 		$fields = array();
 		
 		$fields[] = array(
@@ -96,16 +98,16 @@
 		);
             
  	    $fields[] = array(
-		'label' => 'Image width',
-		'type' => 'number',
-		'value' => qa_opt('embed_image_width'),
-		'tags' => 'NAME="embed_image_width"',
+			'label' => 'Image width',
+			'type' => 'number',
+			'value' => qa_opt('embed_image_width'),
+			'tags' => 'NAME="embed_image_width"',
 	    );                    
 	    $fields[] = array(
-		'label' => 'Image height',
-		'type' => 'number',
-		'value' => qa_opt('embed_image_height'),
-		'tags' => 'NAME="embed_image_height"',
+			'label' => 'Image height',
+			'type' => 'number',
+			'value' => qa_opt('embed_image_height'),
+			'tags' => 'NAME="embed_image_height"',
 	    ); 
 		$fields[] = array(
 			'label' => 'Enable thickbox image effect',
@@ -137,26 +139,31 @@
 			'type' => 'blank',
 		);
 		
-		
 		$fields[] = array(
 			'label' => 'Enable Google maps embedding',
 			'tags' => 'NAME="embed_enable_gmap"',
 			'value' => qa_opt('embed_enable_gmap'),
 			'type' => 'checkbox',
 		);
-            
  	    $fields[] = array(
-		'label' => 'Map width',
-		'type' => 'number',
-		'value' => qa_opt('embed_gmap_width'),
-		'tags' => 'NAME="embed_gmap_width"',
-	    );                    
+			'label' => 'Map width',
+			'type' => 'number',
+			'value' => qa_opt('embed_gmap_width'),
+			'tags' => 'NAME="embed_gmap_width"',
+	    );
 	    $fields[] = array(
-		'label' => 'Map height',
-		'type' => 'number',
-		'value' => qa_opt('embed_gmap_height'),
-		'tags' => 'NAME="embed_gmap_height"',
+			'label' => 'Map height',
+			'type' => 'number',
+			'value' => qa_opt('embed_gmap_height'),
+			'tags' => 'NAME="embed_gmap_height"',
 	    ); 
+
+		$fields[] = array(
+			'label' => 'Embed PDFs that were uploaded',
+			'tags' => 'NAME="embed_pdf_from_blob"',
+			'value' => qa_opt('embed_pdf_from_blob'),
+			'type' => 'checkbox',
+		);
 
 		return array(           
 			'ok' => ($ok && !isset($error)) ? $ok : null,

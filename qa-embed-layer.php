@@ -110,7 +110,79 @@
 					$text = preg_replace('/(?<![\'"=])'.$r[0].'/i',$r[1],$text);
 				}
 			}
+			
+			/* Files that were uploaded to q2a get a URL like: ./?qa=blob&qa_blobid=14985201715764609123
+			 * The regex-checks above cannot find the filetype as it is not specified in the URL.
+			 * However, we can extract the blobid and request the filetype from the DB,
+			 * according to the filetype we can set the correct html embed tags.
+			 * Filetype of interest: PDF
+			 * Note: The PDF-embed is added to the end of the post.
+			 * by q2apro.com
+			 */
+			 
+			/* Important: With q2a v1.6.3 and lower, the qa-include/qa-blob.php must be changed 
+			 * to achieve correct serving of the PDF file.
+			 * See here for details: http://www.question2answer.org/qa/33645/
+			 * Probably this will be solved with q2a v1.7
+			 */
+			 
+			 
+			if(qa_opt('embed_pdf_from_blob')) {
+				// do we have a bloburl in the post text
+				if(strpos($text,'qa_blobid=') !== false) {
+					$allBlobURLs = array();
+					
+					// get all URLs
+					$urls = $this->q2apro_getUrlsFromString($text);
+					foreach($urls as $urln) {
+						if(strpos($urln,'qa_blobid=') !== false) {
+							// found blobid add link to array
+							$allBlobURLs[] = $urln;
+						}
+					}
+					
+					// @NoahY: for later language file needed
+					$lang_nopdfplugin = 'Your browser does not have a PDF plugin installed.';
+					$lang_downloadpdf = 'Download the PDF:';
+					
+					// we found blobURLs
+					if(count($allBlobURLs)>0) {
+						// remove duplicates from array and go over all items
+						foreach(array_unique($allBlobURLs) as $blobURL) {
+							// extract the blobid from the blobURL
+							$urlArray = explode('=',$blobURL);
+							$blobid = $urlArray[sizeof($urlArray)-1];
+							
+							if($blobid!='') {
+								// query the filetype
+								$blobFF = qa_db_read_one_assoc( qa_db_query_sub('SELECT format,filename FROM `^blobs` 
+																					WHERE blobid = # 
+																					', $blobid), true );
+								if(isset($blobFF['format']) && $blobFF['format']=='pdf') {
+									$pdfname = $blobFF['filename']; 
+									if(is_null($pdfname)) {
+										$pdfname = 'Document';
+									}
+									// we have a pdf, add embed to the end of the post
+									$text .= '<object data="'.$blobURL.'" type="application/pdf" style="width:100%;height:600px;border:1px solid #DDD;"> 
+									<embed src="'.$blobURL.'" />
+									<p>'.$lang_nopdfplugin.'</p>
+									</object>
+									<p style="margin:10px 0 50px 0;">'.$lang_downloadpdf.' <a href="'.$blobURL.'">'.$pdfname.'</a></p>';
+								}
+							}
+						}
+					}
+				}
+			}
 			return $text;
 		}
+		
+		function q2apro_getUrlsFromString($string) {
+			$regex = '/\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|$!:,.;]*[A-Z0-9+&@#\/%=~_|$]/i';
+			preg_match_all($regex, $string, $matches);
+			return $matches[0];
+		}
+ 
 	}
 
