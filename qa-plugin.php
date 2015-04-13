@@ -22,6 +22,7 @@
         qa_register_plugin_module('module', 'qa-embed-admin.php', 'qa_embed_admin', 'Embed Admin');
         
         qa_register_plugin_layer('qa-embed-layer.php', 'Embed Replacement Layer');
+        qa_register_plugin_overrides('qa-embed-overrides.php');
                         
                         
 /*                              
