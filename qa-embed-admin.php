@@ -15,7 +15,7 @@
 		case 'embed_thickbox_thumb':
 		    return 64;
 		case 'embed_mp3_player_code':
-		    return '<object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_mini.swf" width="200" height="20"><param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_mini.swf" /><param name="bgcolor" value="#000000" /><param name="FlashVars" value="mp3=$1" /></object>';
+		    return '<audio controls src="$1">Your browser does not support the <code>audio</code> element.</audio>';
 		default:
 		    return null;				
 	    }
@@ -126,7 +126,7 @@
 		);
 		
 		$fields[] = array(
-			'label' => 'mp3 flash player code',
+			'label' => 'HTML5 audio player code',
 			'tags' => 'NAME="embed_mp3_player_code"',
 			'value' => qa_opt('embed_mp3_player_code'),
 			'type' => 'textarea',
